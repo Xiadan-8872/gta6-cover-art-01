@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Sunset Cover Studio — GTA-style cover art maker</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ff2e88'/%3E%3Ctext x='16' y='22' font-size='18' font-family='sans-serif' font-weight='bold' text-anchor='middle' fill='white'%3ENS%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">NS</span> Neon Sunset <b>Cover Studio</b></div>
+  <p class="tagline">Turn your photos into a sunset-neon poster cover. Everything stays on your machine.</p>
+</header>
+<main class="app">
+  <section class="controls" aria-label="Cover editor controls">
+    <div class="group">
+      <h2>1 · Photos</h2>
+      <label class="filebtn">Add photos… <input id="photo" type="file" accept="image/*" multiple></label>
+      <div class="samples">
+        <button id="sample-boulevard" type="button">Use sample: Boulevard</button>
+        <button id="sample-pier" type="button">Use sample: Pier</button>
+      </div>
+      <p class="hint">Click a panel in the preview, then pick a photo below to fill it. Drag the photo to move it.</p>
+      <div id="thumbs" class="thumbs" aria-label="Loaded photos"></div>
+    </div>
+
+    <div class="group">
+      <h2>2 · Layout</h2>
+      <div id="layouts" class="picker" role="group" aria-label="Layout"></div>
+    </div>
+
+    <div class="group">
+      <h2>3 · Sunset grade</h2>
+      <div id="grades" class="picker" role="group" aria-label="Colour grade"></div>
+      <div class="toggles">
+        <label><input id="grain" type="checkbox" checked> Film grain</label>
+        <label><input id="vignette" type="checkbox" checked> Vignette</label>
+        <label><input id="halftone" type="checkbox"> Halftone dots</label>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>4 · Panel</h2>
+      <p class="hint" id="panel-hint">Selected panel: <b id="panel-name">Hero</b></p>
+      <label class="slider">Zoom <input id="zoom" type="range" min="1" max="3" step="0.05" value="1.2"> <span id="zoom-val">1.20×</span></label>
+      <div class="row">
+        <button id="center-photo" type="button">Centre photo</button>
+        <button id="fill-all" type="button">Fill all panels with this photo</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>5 · Caption</h2>
+      <label>Title <input id="title" type="text" maxlength="32" value="Sunset Heist"></label>
+      <label>Subtitle <input id="subtitle" type="text" maxlength="48" value="Neon Nights · 2026"></label>
+      <label class="slider">Title size <input id="title-size" type="range" min="60" max="140" step="5" value="100"> <span id="title-size-val">100%</span></label>
+    </div>
+
+    <div class="group export">
+      <h2>6 · Export PNG</h2>
+      <label>Size
+        <select id="size">
+          <option value="1080x1080">Square · 1080 × 1080</option>
+          <option value="1080x1350" selected>Portrait · 1080 × 1350</option>
+          <option value="1920x1080">Wide · 1920 × 1080</option>
+        </select>
+      </label>
+      <button id="export" type="button" class="primary">Export PNG</button>
+      <button id="export-all" type="button">Export all three sizes</button>
+      <p id="status" role="status"></p>
+    </div>
+  </section>
+
+  <section class="preview" aria-label="Live preview">
+    <canvas id="cover" width="1080" height="1350" aria-label="The cover, live preview"></canvas>
+    <p class="preview-hint">Live preview — click a panel to select it, drag to reposition its photo.</p>
+  </section>
+</main>
+<footer class="foot">Original artwork made on your machine. No uploads, no network, no Rockstar logos or fonts.</footer>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
